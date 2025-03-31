@@ -22,6 +22,10 @@ void TodoEntry::setText(const QString& text) {
     ui->entry->setText(text);
 }
 
+void TodoEntry::focus_entry() {
+    ui->entry->setFocus();
+}
+
 void TodoEntry::on_editing_finished() {
     qDebug()<<index<<" is: "<<ui->entry->text();
     edited(index, ui->entry->text());

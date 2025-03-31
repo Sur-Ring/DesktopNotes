@@ -24,7 +24,8 @@ StickyNote::StickyNote(QWidget *parent) : QWidget(parent), ui(new Ui::StickyNote
     qRegisterMetaType<Monitor::Type>("Type");//为了信号中能传递自定义枚举类型，如果传递常规参数，可省略该行
     connect(&monitor,SIGNAL(sendKeyType(Type)),this,SLOT(checkType(Type)));
 
-    as_toolwindow();
+    // TODO 暂时注释掉
+    // as_toolwindow();
     move_to_top();
 }
 

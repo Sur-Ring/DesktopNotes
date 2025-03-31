@@ -28,8 +28,10 @@ private:
     QList<TodoEntry*> entry_list;
     void load_todo();
     void save_todo();
+    void update_entry();
 private slots:
     void onTextChanged(int index, const QString &text);
+    void on_add_clicked();
 };
 } // TodoList
 

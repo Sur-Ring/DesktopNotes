@@ -27,6 +27,7 @@ public:
     int index;
 
     void setText(const QString &text);
+    void focus_entry();
 
 private:
     Ui::TodoEntry *ui;

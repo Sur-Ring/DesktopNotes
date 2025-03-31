@@ -24,7 +24,7 @@
     <layout class="QVBoxLayout" name="entry_list"/>
    </item>
    <item>
-    <widget class="AddEntry" name="widget_2" native="true">
+    <widget class="AddEntry" name="add_area" native="true">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
        <horstretch>0</horstretch>

@@ -20,6 +20,10 @@ public:
     ~AddEntry() override;
 private:
     Ui::AddEntry *ui;
+signals:
+    void clicked();
+private slots:
+    void on_clicked();
 };
 } // TodoList
 

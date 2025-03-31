@@ -15,13 +15,8 @@ QString todo_file_path = "Data/todo.txt";
 TodoList::TodoList(QWidget *parent) : QWidget(parent), ui(new Ui::TodoList) {
     ui->setupUi(this);
     load_todo();
-    for (int i = 0; i < todo_text_list.size(); ++i) {
-        TodoEntry *entry = new TodoEntry(i,this);
-        entry->setText(todo_text_list[i]);
-        connect(entry, SIGNAL(edited(int,const QString&)), this, SLOT(onTextChanged(int,const QString&)));
-        ui->entry_list->addWidget(entry);
-        entry_list.append(entry);
-    }
+    update_entry();
+    connect(ui->add_area, SIGNAL(clicked()), this, SLOT(on_add_clicked()));
 }
 
 TodoList::~TodoList() {
@@ -54,9 +49,47 @@ void TodoList::save_todo() {
     }
 }
 
+// 这个软件不是为了大量记录而设计的, 因此这样的暴力更新不会有什么问题, 有问题了再说
+void TodoList::update_entry() {
+    if (entry_list.size() < todo_text_list.size()) {
+        for (qsizetype i = entry_list.size(); i < todo_text_list.size(); ++i) {
+            auto *entry = new TodoEntry(i,this);
+            connect(entry, SIGNAL(edited(int,const QString&)), this, SLOT(onTextChanged(int,const QString&)));
+            ui->entry_list->addWidget(entry);
+            entry_list.append(entry);
+        }
+    }
+
+    if (entry_list.size() > todo_text_list.size()) {
+        for (qsizetype i = todo_text_list.size(); i < entry_list.size(); ++i) {
+            entry_list[i]->hide();
+        }
+    }
+
+    for (qsizetype i = 0; i < todo_text_list.size(); ++i) {
+        entry_list[i]->setText(todo_text_list[i]);
+        entry_list[i]->show();
+    }
+}
+
 void TodoList::onTextChanged(int index, const QString &text) {
-    qDebug()<<index<<" changed: "<<text;
-    todo_text_list[index] = text;
-    save_todo();
+    qDebug()<<index<<" changed: "<<text<<" len:"<<text.length();
+    if (text=="") {
+        qDebug()<<"text:empty"<<" text_list_len: "<<todo_text_list.size()<<" entry_list_len:"<<entry_list.size();
+        todo_text_list.removeAt(index);
+        qDebug()<<"text:empty111"<<" text_list_len: "<<todo_text_list.size()<<" entry_list_len:"<<entry_list.size();
+        update_entry();
+    }else {
+        todo_text_list[index] = text;
+    }
+    // TODO 暂时注释掉
+    // save_todo();
+}
+
+void TodoList::on_add_clicked() {
+    todo_text_list<<"";
+    update_entry();
+    qDebug()<<"text_list_len: "<<todo_text_list.size()<<" entry_list_len:"<<entry_list.size();
+    entry_list[todo_text_list.size()-1]->focus_entry();
 }
 } // TodoList
