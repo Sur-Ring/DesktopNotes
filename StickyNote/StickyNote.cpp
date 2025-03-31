@@ -37,15 +37,15 @@ void StickyNote::checkType(Monitor::Type type){
     switch (type) {
         case Monitor::TEST1:
             qDebug()<<"TEST1";
-            break;
+        break;
         case Monitor::TEST2:
             qDebug()<<"TEST2";
-            move_to_top();
+        move_to_top();
         break;
         case Monitor::JUMP_TO_DESKTOP:
             qDebug()<<"JUMP_TO_DESKTOP";
-            move_to_top();
-            break;
+        move_to_top();
+        break;
         default:
             break;
     }
@@ -61,4 +61,5 @@ void StickyNote::as_toolwindow() {
     HWND handle = (HWND) winId();
     SetWindowLong(handle,GWL_EXSTYLE,WS_EX_TOOLWINDOW);
 }
+
 } // StickyNote

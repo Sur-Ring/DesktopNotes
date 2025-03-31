@@ -6,25 +6,44 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>384</width>
-    <height>283</height>
+    <width>589</width>
+    <height>686</height>
    </rect>
+  </property>
+  <property name="focusPolicy">
+   <enum>Qt::FocusPolicy::ClickFocus</enum>
   </property>
   <property name="windowTitle">
    <string>StickyNote</string>
   </property>
-  <widget class="QWidget" name="verticalLayoutWidget">
-   <property name="geometry">
-    <rect>
-     <x>70</x>
-     <y>80</y>
-     <width>201</width>
-     <height>101</height>
-    </rect>
-   </property>
-   <layout class="QVBoxLayout" name="verticalLayout"/>
-  </widget>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QLineEdit" name="lineEdit">
+     <property name="text">
+      <string>11111</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="TodoList::TodoList" name="widget" native="true">
+     <property name="minimumSize">
+      <size>
+       <width>300</width>
+       <height>300</height>
+      </size>
+     </property>
+    </widget>
+   </item>
+  </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>TodoList::TodoList</class>
+   <extends>QWidget</extends>
+   <header>TodoList/TodoList.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

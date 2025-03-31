@@ -12,6 +12,10 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
 
+INCLUDE_DIRECTORIES(
+        ${PROJECT_SOURCE_DIR}
+)
+
 set(PROJECT_SOURCES
         main.cpp
         mainwindow.cpp
@@ -24,6 +28,15 @@ set(PROJECT_SOURCES
         StickyNote/Monitor.h
         StickyNote/Elevator.cpp
         StickyNote/Elevator.h
+        TodoList/TodoEntry.cpp
+        TodoList/TodoEntry.h
+        TodoList/TodoEntry.ui
+        TodoList/AddEntry.cpp
+        TodoList/AddEntry.h
+        TodoList/AddEntry.ui
+        TodoList/TodoList.cpp
+        TodoList/TodoList.h
+        TodoList/TodoList.ui
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

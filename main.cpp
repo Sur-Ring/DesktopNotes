@@ -11,8 +11,8 @@ int main(int argc, char *argv[]) {
     QApplication a(argc, argv);
     qDebug()<<"init";
 
-    MainWindow w;
-    w.show();
+    // MainWindow w;
+    // w.show();
     StickyNote::StickyNote s;
     s.show();
 
